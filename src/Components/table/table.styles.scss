@@ -2,7 +2,10 @@ tr:hover td{
     background-color:#6264A7;
     color: white !important;
     }
-   
+   .dropDown{
+       position: absolute !important;
+       right: 30px;
+   }
     table,Tr,Th,Td{
         box-sizing: border-box;
     }
@@ -38,13 +41,56 @@ tr:hover td{
 
     }
 
-    .dropdown-Content{
-        display: flex;
+    @media (min-width: 320px) and (max-width: 480px) {
+       
+      .panel{
+      min-width: 96vw;
+      }
+     Table{
+         position: relative;
+     }
+     .dropDown{
+         left: 135vw;
+     }
+      
+      }
+      @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3){
+        .dropDown{
+            left: 154vw;
+        }
+      }
+      @media screen and (device-aspect-ratio: 40/71) {
+        .dropDown{
+            left: 173vw;
+        }
+      }
+      @media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) 
+and (orientation : portrait) { 
+    .dropDown{
+        left: 148vw;
     }
+    /* STYLES GO HERE */
+ }
 
-    td.fklyo9b{
-        position: relative;
+ @media only screen 
+and (min-device-width : 414px) 
+and (max-device-width : 736px) 
+and (orientation : portrait) {
+    .dropDown{
+        left: 134vw;
     }
-   
-   
-   
+     /* STYLES GO HERE */ 
+    }
+    @media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) { 
+    .panel{
+        min-width: 96vw;
+        }
+        .dropDown{
+            left: 75.5vw;
+        }
+    /* STYLES GO HERE */ }

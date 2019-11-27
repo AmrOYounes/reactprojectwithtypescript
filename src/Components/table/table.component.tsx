@@ -24,9 +24,9 @@ interface State {
     type: string;
     Duration: string;
     Date: string;
-    three: number;
   }[];
 }
+
 class TableExample extends React.Component<Props, State> {
   constructor(props: any) {
     super(props);
@@ -38,7 +38,6 @@ class TableExample extends React.Component<Props, State> {
           type: "Incoming",
           Duration: "45sec",
           Date: "29/11 11:43",
-          three: 3
         },
         {
           avatar: "https://ui-avatars.com/api/?rounded=true",
@@ -46,7 +45,7 @@ class TableExample extends React.Component<Props, State> {
           type: "Missed call",
           Duration: "20sec",
           Date: "22/10 11:43",
-          three: 3
+
         },
         {
           avatar: "https://ui-avatars.com/api/?rounded=true",
@@ -54,7 +53,6 @@ class TableExample extends React.Component<Props, State> {
           type: "Incoming",
           Duration: "10sec",
           Date: "11/11 11:43",
-          three: 3
         },
         {
           avatar: "https://ui-avatars.com/api/?rounded=true",
@@ -62,7 +60,6 @@ class TableExample extends React.Component<Props, State> {
           type: "Outgoing",
           Duration: "33sec",
           Date: "25/12 11:43",
-          three: 3
         }
       ],
 
@@ -101,13 +98,12 @@ class TableExample extends React.Component<Props, State> {
               iconType={MSTeamsIconType.CallMissed}
               iconWeight={MSTeamsIconWeight.Light}
             />
-           <span>Missed call</span>
+            <span>Missed call</span>
           </div>
         );
     }
     return <MSTeamsIcon />;
   };
-
 
   render() {
     return (
@@ -123,23 +119,22 @@ class TableExample extends React.Component<Props, State> {
               marginBottom: rem(1.4)
             }
           };
-
           return (
-            <Panel style={{ width: '50vw', height: '50vh' }} >
+            <Panel  className='panel' style={{maxWidth:'50vw',height:'400px'}} >
               <PanelHeader>
                 <div style={{ textAlign: 'left', fontWeight: 'bold' }}>Call History </div>
               </PanelHeader>
-              <PanelBody>
-                <Table className="calls-table">
+              <PanelBody >
+                <Table className="calls-table" style={{ minWidth:'40vw',position:'relative'}}>
                   <TBody>
-                    <Tr>
+                    <Tr style={{minWidth:'600px'}}>
                       <Td>Name</Td>
-                      <Td style={{paddingLeft:'10%'}}>Type</Td>
+                      <Td >Type</Td>
                       <Td>Duration</Td>
                       <Td>Date</Td>
                     </Tr>
                     {this.state.data.map((item, index) => (
-                      <Tr>
+                      <Tr style={{minWidth:'600px'}}>
                         <Td>
                           <img
                             src="https://ui-avatars.com/api/?rounded=true"
@@ -149,17 +144,14 @@ class TableExample extends React.Component<Props, State> {
                           &nbsp; <span>{item.name} </span>
                         </Td>
                         <Td>
-
                           {this.getCallIcon(item.type)}
                         </Td>
-
                         <Td>{item.Duration}</Td>
-
-                        <Td>
+                        
+                        <Td >
                           <span>{item.Date}</span>
-
                           <IconButton
-                          iconWeight={MSTeamsIconWeight.Regular}
+                            iconWeight={MSTeamsIconWeight.Regular}
                             className='table-call-icon'
                             style={{
                               background: "white",
@@ -171,15 +163,14 @@ class TableExample extends React.Component<Props, State> {
                             }}
                             iconType={MSTeamsIconType.CallStartBig}
                           />
-
                           <Dropdown
+                            className='dropDown'
                             autoFocus
                             mainButtonText=""
-                            style={{ position: "absolute", right: "16px", }}
                             items={[
                               {
                                 render: () => (
-                                  <div className="dropdown-Content">
+                                  <div className="dropdown-Content" >
                                     <MSTeamsIcon
                                       iconWeight={MSTeamsIconWeight.Light}
                                       iconType={
@@ -210,6 +201,7 @@ class TableExample extends React.Component<Props, State> {
                     ))}
                   </TBody>
                 </Table>
+             
               </PanelBody>
               <PanelFooter></PanelFooter>
             </Panel>

@@ -1,24 +1,35 @@
+.topContainer{
+  position: relative;
+  width:20vw;
+  display: flex;
+  flex-direction: column;
+  height:43vh ;
+}
 .container {
   display: flex;
-  position: relative;
-  width: 12vw;
-  height: 40vh;
+  width: 80%;
+ 
 }
-
+.my-input{
+  width: 200px;
+  height:50px;
+  border-radius:5px;
+  margin-left: 3%;
+}
 .buttonContainer {
   display: grid;
-  width: 16vw;
-  grid-template-columns: repeat(3, 1.2fr);
-  grid-gap: 20px;
-  padding: 20px;
+  width: 70%;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  padding: 5px;
   height: 30vh;
 }
 .mybutton {
   display: grid;
   justify-items: center;
   align-items: center;
-  width: 2.9vw;
-  height: 50px;
+  width: 59px;
+  height: 59px;
   border: 1px solid #e1dfdd;
   border-radius: 6px;
   &:hover {
@@ -28,20 +39,22 @@
 }
 
 .input-contanier {
+  flex-basis: 60px;
   position: relative;
-  width: 11vw;
+  height:5px;
+}
+.callDial{
+  display:flex;
+  justify-content: center;
 }
 .dialIcon-container {
   display: flex;
-  width: 50px;
-  height: 50px;
+  width:40px;
+  height: 40px;
   justify-content: center;
   align-items: center;
   background-color: #f4f4f4;
   border-radius: 50%;
-  position: absolute;
-  bottom: 2px;
-  left: 43%;
   &:hover {
     background: #6266a3;
     .dialIcon {
@@ -76,3 +89,4 @@
     cursor: context-menu;
   }
 }
+

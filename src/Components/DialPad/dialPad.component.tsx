@@ -15,14 +15,11 @@ import './dialPad.styles.scss';
 import { number } from "prop-types";
 
 interface Props { }
-
 interface State {
   data: string[],
   letter: string[],
   value: string,
 }
-
-
 
 class DialPad extends React.Component<Props, State> {
   constructor(props: any) {
@@ -34,10 +31,11 @@ class DialPad extends React.Component<Props, State> {
     };
   }
 
-  onHold = (evt: any) => {
-    this.setState((prevState) => ({
-      value: prevState.value + '+',
-    }))
+  onHold = (index: number) => {
+    if (this.state.data[index] === '0')
+      this.setState((prevState) => ({
+        value: prevState.value + '+',
+      }))
   }
 
   onValueChanged = (event: any) => {
@@ -63,7 +61,7 @@ class DialPad extends React.Component<Props, State> {
   }
 
   deleteMouseOver = () => {
-    const myinput : any = document.getElementById('input1');
+    const myinput: any = document.getElementById('input1');
     myinput.classList.add("mystyle");
   }
   render() {
@@ -86,49 +84,60 @@ class DialPad extends React.Component<Props, State> {
               }
             },
             input: {
-              paddingTop: rem(0.5),
-              marginLeft: rem(1.2),
-              width: '11vw',
-
+              paddingTop: rem(0.5),       
             },
-          }
+            removeIcon: {
+              position:'absolute',
+               top: '12px',
+                right: '30%',
+                 fontSize: '200%',
+                  color: '#C8C6C4' ,
+            },
 
+            '@media (min-device-width:  768px) and max-device-width : 1024px)':{
+              removeIcon: {
+                position:'absolute',
+                top: '12px',
+                right: '70%',
+              }
+            }
+          }
           return (
             <Panel>
               <PanelBody>
+                <div className='topContainer'>
+
+               
                 <div className='input-contanier' >
                   <Input
                     id='input1'
                     className='my-input'
-                    autoFocus
                     style={styles.input}
                     value={this.state.value}
                     onChange={this.onValueChanged}
                     required />
-                    {
-                      this.state.value && ( <Holdable
-                        onHold={this.deleteAll}
-                        onClick={this.handleRemove}
-                        id='44455'
-                      >
-                        <MSTeamsIcon
-                          onMouseOver={this.deleteMouseOver}
-                          className='remove-icon'
-                          style={{ position: 'absolute', top: '12px', right: '0px', fontSize: '200%', color: '#C8C6C4' }}
-                          iconWeight={MSTeamsIconWeight.Regular}
-                          iconType={MSTeamsIconType.Backspace}
-    
-                        />
-                      </Holdable>)
-                    }
-                 
+                  {
+                    this.state.value && (<Holdable
+                      onHold={this.deleteAll}
+                      onClick={this.handleRemove}
+                      id='44455'
+                    >
+                      <MSTeamsIcon
+                        onMouseOver={this.deleteMouseOver}
+                        className='remove-icon'
+                        style={{ position: 'absolute', top: '12px', right: '30%', fontSize: '200%', color: '#C8C6C4' }}
+                        iconWeight={MSTeamsIconWeight.Regular}
+                        iconType={MSTeamsIconType.Backspace}
+                      />
+                    </Holdable>)
+                  }
                 </div>
-                <div className='container'>
+               
                   <div className='buttonContainer'>
                     {
                       this.state.data.map((number, index) => (
                         <Holdable
-                          onHold={this.onHold}
+                          onHold={() => this.onHold(index)}
                           onClick={() => this.handleButtonClick(index)}
                           id='76'
                         >
@@ -136,23 +145,23 @@ class DialPad extends React.Component<Props, State> {
                             <span className='buttonNumber'> {number} </span>
                             {this.state.letter[index] && <span className='letter'>{this.state.letter[index]}</span>}
                           </div>
-
                         </Holdable>
                       ))
                     }
-                    <div className='dialIcon-container'>
+                  </div>
+                  <div className='callDial'>
+                  <div className='dialIcon-container'>
                       <MSTeamsIcon
                         className='dialIcon'
                         iconWeight={MSTeamsIconWeight.Regular}
                         iconType={
                           MSTeamsIconType.CallStartBig} />
                     </div>
-                  </div>
+                    </div>
                 </div>
               </PanelBody>
             </Panel>
           )
-
         }}
       </TeamsThemeContext.Consumer>
     );

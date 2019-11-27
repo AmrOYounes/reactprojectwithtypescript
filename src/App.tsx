@@ -8,7 +8,6 @@ const App: React.FC = () => {
   return (
     <div className="App">
     <DialPad/>
-    <TableExample/>
     </div>
   );
 }
