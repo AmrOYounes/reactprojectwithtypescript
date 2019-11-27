@@ -84,23 +84,8 @@ class DialPad extends React.Component<Props, State> {
               }
             },
             input: {
-              paddingTop: rem(0.5),       
+              padding: rem(0),       
             },
-            removeIcon: {
-              position:'absolute',
-               top: '12px',
-                right: '30%',
-                 fontSize: '200%',
-                  color: '#C8C6C4' ,
-            },
-
-            '@media (min-device-width:  768px) and max-device-width : 1024px)':{
-              removeIcon: {
-                position:'absolute',
-                top: '12px',
-                right: '70%',
-              }
-            }
           }
           return (
             <Panel>
@@ -112,7 +97,6 @@ class DialPad extends React.Component<Props, State> {
                   <Input
                     id='input1'
                     className='my-input'
-                    style={styles.input}
                     value={this.state.value}
                     onChange={this.onValueChanged}
                     required />
@@ -125,7 +109,7 @@ class DialPad extends React.Component<Props, State> {
                       <MSTeamsIcon
                         onMouseOver={this.deleteMouseOver}
                         className='remove-icon'
-                        style={{ position: 'absolute', top: '12px', right: '30%', fontSize: '200%', color: '#C8C6C4' }}
+                        // style={{ position: 'absolute', top: '12px', right: '30%', fontSize: '200%', color: '#C8C6C4' }}
                         iconWeight={MSTeamsIconWeight.Regular}
                         iconType={MSTeamsIconType.Backspace}
                       />

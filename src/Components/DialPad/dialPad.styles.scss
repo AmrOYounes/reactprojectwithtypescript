@@ -1,35 +1,46 @@
 .topContainer{
   position: relative;
   width:20vw;
+  height:43vh ;
   display: flex;
   flex-direction: column;
-  height:43vh ;
+ align-items: center;
 }
-.container {
-  display: flex;
-  width: 80%;
- 
+
+.input-contanier {
+ width: 60%;
+ height: 6vh;
+ position: relative;
 }
+
 .my-input{
-  width: 200px;
-  height:50px;
+  width: 100%;
   border-radius:5px;
-  margin-left: 3%;
 }
+.remove-icon{
+  position: absolute;
+  top: 8px;
+  right:15%;
+  color: #C8C6C4;
+  font-size: 200% !important;
+}
+
+
 .buttonContainer {
   display: grid;
-  width: 70%;
-  grid-template-columns: auto auto auto;
-  grid-gap: 10px;
-  padding: 5px;
+  width: 60%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  padding-top: 10px;
   height: 30vh;
+  margin-bottom: 5px;
 }
 .mybutton {
-  display: grid;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 59px;
-  height: 59px;
+  height: 50px;
   border: 1px solid #e1dfdd;
   border-radius: 6px;
   &:hover {
@@ -38,19 +49,16 @@
   }
 }
 
-.input-contanier {
-  flex-basis: 60px;
-  position: relative;
-  height:5px;
-}
+
 .callDial{
   display:flex;
+  width: 60%;
   justify-content: center;
 }
 .dialIcon-container {
   display: flex;
   width:40px;
-  height: 40px;
+  height:40px;
   justify-content: center;
   align-items: center;
   background-color: #f4f4f4;
@@ -90,3 +98,115 @@
   }
 }
 
+@media (max-width: 979px) {
+  /* Selectors and styles affecting screens UP TO 979px (Desktop) */
+
+}
+
+@media (max-width: 767px) {
+    /* Selectors and styles affecting screens UP TO 767px (Tablet) */
+}
+
+@media (max-width: 480px) {
+    /* Selectors and styles affecting screens UP TO 480px (Phone) */
+    .topContainer{
+      position: relative;
+      width:70vw;
+      height:66vh ;
+      display: flex;
+      flex-direction: column;
+     align-items: center;
+    }
+    
+    .input-contanier {
+     width: 90%;
+     height: 6vh;
+     position: relative;
+    }
+    
+    .my-input{
+      width: 100%;
+      border-radius:5px;
+    }
+    .remove-icon{
+      position: absolute;
+      top: 8px;
+      right:15%;
+      color: #C8C6C4;
+      font-size: 150% !important;
+    }
+    
+    
+    .buttonContainer {
+      display: grid;
+      width: 90%;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+      padding-top: 10px;
+      height: 30vh;
+      margin-bottom: 5px;
+    }
+    .mybutton {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      border: 1px solid #e1dfdd;
+      border-radius: 6px;
+      &:hover {
+        background-color: #6266a3;
+        color: white !important;
+      }
+    }
+    
+    
+    .callDial{
+      display:flex;
+      width: 60%;
+      justify-content: center;
+    }
+    .dialIcon-container {
+      display: flex;
+      width:40px;
+      height:40px;
+      justify-content: center;
+      align-items: center;
+      background-color: #f4f4f4;
+      border-radius: 50%;
+      &:hover {
+        background: #6266a3;
+        .dialIcon {
+          color: white;
+        }
+      }
+    }
+    
+    .letter {
+      font-size: 14px;
+      opacity: 0.6;
+      &:hover{
+        cursor: context-menu;
+      }
+    }
+    
+    .remove-icon:hover {
+      color: #6264a7 !important;
+    }
+    
+    .dialIcon {
+      color: #8a8886;
+    }
+    
+    .dialIcon:hover {
+      color: white;
+    }
+    
+    .buttonNumber {
+      font-size: 22px;
+      &:hover{
+        cursor: context-menu;
+      }
+    }
+     
+}
