@@ -12,8 +12,6 @@ import {
   MSTeamsIconWeight
 } from "msteams-ui-icons-react";
 import './dialPad.styles.scss';
-import { number } from "prop-types";
-
 interface Props { }
 interface State {
   data: string[],

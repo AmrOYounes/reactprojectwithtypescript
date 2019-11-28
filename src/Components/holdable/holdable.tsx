@@ -1,56 +1,77 @@
 import React from 'react'
 const holdTime = 500 // ms
-const holdDistance = 3**2 // pixels squared
+const holdDistance = 3 ** 2 // pixels squared
 type Props = {
-    id: any,
-    onClick: any,
-    onHold: any,
-    children: any,
+  id: any,
+  onClick: any,
+  onHold: any,
+  children: any,
+}
+type State = {
+  timer: number | null,
+  pos: any,
 }
 
-export default function Holdable({id, onClick, onHold, children}: Props) {
-  const [timer, setTimer] = React.useState<number |null>(null)
-  const [pos, setPos] = React.useState([0,0])
+export default class Holdable extends React.Component<Props, State> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      timer: null,
+      pos: [0, 0],
+    }
 
-  function onPointerDown(evt: any) {
-    setPos([evt.clientX, evt.clientY]) // save position for later
-    const event = { ...evt } // convert synthetic event to real object
-    const timeoutId: any = window.setTimeout(timesup.bind(null, event), holdTime)
-    setTimer(timeoutId)
   }
 
-  function onPointerUp(evt: any) {
-    if (timer) {
-      window.clearTimeout(timer)
-      setTimer(null)
-      onClick(evt)
+  onPointerDown = (evt: any) => {
+    this.setState({
+      pos: [evt.clientX, evt.clientY],
+    })
+    const event = { ...evt } // convert synthetic event to real object
+    const timeoutId: any = window.setTimeout(this.timesup.bind(null, event), holdTime);
+    this.setState({
+      timer: timeoutId
+    });
+  }
+
+  onPointerUp = (evt: any) => {
+    if (this.state.timer) {
+      window.clearTimeout(this.state.timer)
+      this.setState({
+        timer: null,
+      })
+      this.props.onClick(evt)
     }
   }
 
-  function onPointerMove(evt: any) {
+  onPointerMove = (evt: any) => {
     // cancel hold operation if moved too much
-    if (timer) {
-      const d = (evt.clientX - pos[0])**2 + (evt.clientY - pos[1])**2
+    if (this.state.timer) {
+      const d = (evt.clientX - this.state.pos[0]) ** 2 + (evt.clientY - this.state.pos[1]) ** 2
       if (d > holdDistance) {
-        setTimer(null)  
-        window.clearTimeout(timer)
+        this.setState({
+          timer: null,
+        })
+        window.clearTimeout(this.state.timer)
       }
     }
   }
 
-  function timesup(evt: any) {
-    setTimer(null)
-    onHold(evt)
+  timesup = (evt: any) => {
+    this.setState({
+      timer: null,
+    })
+    this.props.onHold(evt)
+  }
+  render() {
+    return (
+      <div
+        onPointerDown={this.onPointerDown}
+        onPointerUp={this.onPointerUp}
+        onPointerMove={this.onPointerMove}
+      >
+        {this.props.children}
+      </div>
+    )
   }
 
-  return (
-    <div
-      onPointerDown={onPointerDown}
-      onPointerUp={onPointerUp}
-      onPointerMove={onPointerMove}
-      id={id}
-    >
-      {children}
-    </div>
-  )
 }
