@@ -21,7 +21,7 @@ export default class Holdable extends React.Component<Props, State> {
     }
 
   }
-
+  
   onPointerDown = (evt: any) => {
     this.setState({
       pos: [evt.clientX, evt.clientY],

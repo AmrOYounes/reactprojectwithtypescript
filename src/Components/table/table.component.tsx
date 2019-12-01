@@ -6,25 +6,25 @@ import {
   PanelHeader,
   TeamsThemeContext,
   Dropdown,
-  IconButton
+  IconButton,
 } from "msteams-ui-components-react";
-import { Table, TBody, Tr, Th, Td } from "msteams-ui-components-react";
+import { Table, TBody, Tr, Td } from "msteams-ui-components-react";
 import {
   MSTeamsIcon,
   MSTeamsIconType,
-  MSTeamsIconWeight
+  MSTeamsIconWeight,
 } from "msteams-ui-icons-react";
 import "./table.styles.scss";
+interface CallItem {
+  avatar: string;
+  name: string;
+  type: string;
+  duration: string;
+  date: string;
+}
 interface Props { }
-
 interface State {
-  data: {
-    avatar: string;
-    name: string;
-    type: string;
-    Duration: string;
-    Date: string;
-  }[];
+  data: CallItem [];
 }
 
 class TableExample extends React.Component<Props, State> {
@@ -36,30 +36,30 @@ class TableExample extends React.Component<Props, State> {
           avatar: "https://ui-avatars.com/api/?rounded=true",
           name: "Juilen Herrero",
           type: "Incoming",
-          Duration: "45sec",
-          Date: "29/11 11:43",
+          duration: "45sec",
+          date: "29/11 11:43",
         },
         {
           avatar: "https://ui-avatars.com/api/?rounded=true",
           name: "Juilen Herrero",
           type: "Missed call",
-          Duration: "20sec",
-          Date: "22/10 11:43",
+          duration: "20sec",
+          date: "22/10 11:43",
 
         },
         {
           avatar: "https://ui-avatars.com/api/?rounded=true",
           name: "Juilen Herrero",
           type: "Incoming",
-          Duration: "10sec",
-          Date: "11/11 11:43",
+          duration: "10sec",
+          date: "11/11 11:43",
         },
         {
           avatar: "https://ui-avatars.com/api/?rounded=true",
           name: "Juilen Herrero",
           type: "Outgoing",
-          Duration: "33sec",
-          Date: "25/12 11:43",
+          duration: "33sec",
+          date: "25/12 11:43",
         }
       ],
 
@@ -106,6 +106,7 @@ class TableExample extends React.Component<Props, State> {
   };
 
   render() {
+    const {data} = this.state;
     return (
       <TeamsThemeContext.Consumer>
         {context => {
@@ -133,7 +134,7 @@ class TableExample extends React.Component<Props, State> {
                       <Td>Duration</Td>
                       <Td>Date</Td>
                     </Tr>
-                    {this.state.data.map((item, index) => (
+                    {data.map((item, index) => (
                       <Tr style={{minWidth:'600px'}}>
                         <Td>
                           <img
@@ -146,10 +147,10 @@ class TableExample extends React.Component<Props, State> {
                         <Td>
                           {this.getCallIcon(item.type)}
                         </Td>
-                        <Td>{item.Duration}</Td>
+                        <Td>{item.duration}</Td>
                         
                         <Td >
-                          <span>{item.Date}</span>
+                          <span>{item.date}</span>
                           <IconButton
                             iconWeight={MSTeamsIconWeight.Regular}
                             className='table-call-icon'

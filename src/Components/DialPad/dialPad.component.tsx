@@ -15,7 +15,7 @@ import './dialPad.styles.scss';
 interface Props { }
 interface State {
   data: string[],
-  letter: string[],
+  buttonLetter: string[],
   value: string,
 }
 
@@ -24,7 +24,7 @@ class DialPad extends React.Component<Props, State> {
     super(props);
     this.state = {
       data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'],
-      letter: ["", "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ", "", "+", ""],
+      buttonLetter: ["", "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ", "", "+", ""],
       value: '',
     };
   }
@@ -63,6 +63,7 @@ class DialPad extends React.Component<Props, State> {
     myinput.classList.add("mystyle");
   }
   render() {
+    const {data, buttonLetter, value} = this.state;
     return (
       <TeamsThemeContext.Consumer>
         {context => {
@@ -88,18 +89,16 @@ class DialPad extends React.Component<Props, State> {
           return (
             <Panel>
               <PanelBody>
-                <div className='topContainer'>
-
-               
+                <div className='top-container'>
                 <div className='input-contanier' >
                   <Input
                     id='input1'
                     className='my-input'
-                    value={this.state.value}
+                    value={value}
                     onChange={this.onValueChanged}
                     required />
                   {
-                    this.state.value && (<Holdable
+                    value && (<Holdable
                       onHold={this.deleteAll}
                       onClick={this.handleRemove}
                       id='44455'
@@ -107,7 +106,6 @@ class DialPad extends React.Component<Props, State> {
                       <MSTeamsIcon
                         onMouseOver={this.deleteMouseOver}
                         className='remove-icon'
-                        // style={{ position: 'absolute', top: '12px', right: '30%', fontSize: '200%', color: '#C8C6C4' }}
                         iconWeight={MSTeamsIconWeight.Regular}
                         iconType={MSTeamsIconType.Backspace}
                       />
@@ -115,26 +113,26 @@ class DialPad extends React.Component<Props, State> {
                   }
                 </div>
                
-                  <div className='buttonContainer'>
+                  <div className='button-container'>
                     {
-                      this.state.data.map((number, index) => (
+                      data.map((number, index) => (
                         <Holdable
                           onHold={() => this.onHold(index)}
                           onClick={() => this.handleButtonClick(index)}
                           id='76'
                         >
-                          <div className='mybutton'    >
-                            <span className='buttonNumber'> {number} </span>
-                            {this.state.letter[index] && <span className='letter'>{this.state.letter[index]}</span>}
+                          <div className='my-button'    >
+                            <span className='button__number'> {number} </span>
+                            {buttonLetter[index] && <span className='buttonLetter'>{buttonLetter[index]}</span>}
                           </div>
                         </Holdable>
                       ))
                     }
                   </div>
-                  <div className='callDial'>
-                  <div className='dialIcon-container'>
+                  <div className='dial-icon-container'>
+                  <div className='dial-icon-div'>
                       <MSTeamsIcon
-                        className='dialIcon'
+                        className='dial-icon'
                         iconWeight={MSTeamsIconWeight.Regular}
                         iconType={
                           MSTeamsIconType.CallStartBig} />
