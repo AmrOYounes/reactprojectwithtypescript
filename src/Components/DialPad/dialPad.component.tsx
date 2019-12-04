@@ -87,8 +87,6 @@ class DialPad extends React.Component<Props, State> {
             },
           }
           return (
-            <Panel>
-              <PanelBody>
                 <div className='top-container'>
                 <div className='input-contanier' >
                   <Input
@@ -121,7 +119,7 @@ class DialPad extends React.Component<Props, State> {
                           onClick={() => this.handleButtonClick(index)}
                           id='76'
                         >
-                          <div className='my-button'    >
+                          <div className='my-button' key={index}>
                             <span className='button__number'> {number} </span>
                             {buttonLetter[index] && <span className='buttonLetter'>{buttonLetter[index]}</span>}
                           </div>
@@ -139,8 +137,6 @@ class DialPad extends React.Component<Props, State> {
                     </div>
                     </div>
                 </div>
-              </PanelBody>
-            </Panel>
           )
         }}
       </TeamsThemeContext.Consumer>
