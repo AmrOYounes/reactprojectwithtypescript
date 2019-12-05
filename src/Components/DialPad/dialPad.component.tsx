@@ -37,7 +37,9 @@ class DialPad extends React.Component<Props, State> {
   }
 
   onValueChanged = (event: any) => {
-    this.setState(Object.assign({}, this.state, { value: event.target.value }));
+    this.setState({
+      value: event.target.value,
+    });
   }
 
   handleButtonClick = (index: number) => {
