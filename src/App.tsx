@@ -6,8 +6,9 @@ import DialPad from './Components/DialPad/dialPad.component';
 const App: React.FC = () => {
   return (
 
-  <div style={{width:'400px'}} className='main-container'>
+  <div style={{width:'200px'}} className='main-container'>
   <DialPad/>
+  {/* <DialPad/> */}
   </div>
   );
 }
